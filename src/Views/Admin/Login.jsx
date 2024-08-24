@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import useAdminLogin from "../../hooks/useAdminLogin";
+import containerStyles from "../../utils/containerStyles";
 
 export default function Login() {
   const [show, setShow] = useState(false);
@@ -19,14 +20,15 @@ export default function Login() {
     <Stack
       sx={{
         textAlign: "center",
-        maxW: "50%",
+        maxW: {base: "95%", sm: '80%', lg: '70%', xl: '60%'},
         m: "auto",
+        ...containerStyles,
       }}
     >
       <Heading
         as="h3"
         sx={{
-          m: "60px 0 40px",
+          m: "60px 0 40px ",
         }}
         size="2xl"
       >
