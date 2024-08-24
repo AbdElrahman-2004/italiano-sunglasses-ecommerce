@@ -36,7 +36,7 @@ export default function Home() {
         >
           <Heading
             as="h1"
-            fontSize={{ base: "2.8em" }}
+            fontSize={{ base: "2.9em" }}
             size={{ sm: "4xl" }}
             sx={{
               maxW: "600px",
@@ -47,7 +47,7 @@ export default function Home() {
           >
             تألّق بأناقة وإطلالة مميزة
           </Heading>
-          <Text fontSize={{ base: "1.15em", sm: "2xl" }} lineHeight="2">
+          <Text fontSize={{ base: "1.2em", sm: "2xl" }} lineHeight="2">
             &quot; اكتشف مجموعتنا الواسعة من النظارات الشمسية التي تجمع بين
             الأناقة والحماية لتجد زوج النظارات المثالي لك &quot;
           </Text>
