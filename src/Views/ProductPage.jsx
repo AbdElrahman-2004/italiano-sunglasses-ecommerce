@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Heading,
-  IconButton,
   Image,
   Stack,
   Table,
@@ -21,9 +20,8 @@ import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/bundle";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import containerStyles from "../utils/containerStyles";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { CartContext } from "../App";
 import handleAddToCart from "../utils/handleAddToCart";
 import Loading from "../Components/Loading";
@@ -85,6 +83,7 @@ export default function ProductPage() {
                 borderRadius: 8,
                 overflow: "hidden",
                 maxHeight: "500px",
+                backgroundColor: "rgba(0, 0, 0, 0.04)",
               }}
               loop
             >

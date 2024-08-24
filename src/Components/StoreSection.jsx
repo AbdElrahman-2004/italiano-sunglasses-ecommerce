@@ -7,8 +7,8 @@ import useGetProducts from "../hooks/useGetProducts";
 import Loading from "./Loading";
 export default function StoreSection() {
   const navigate = useNavigate();
-  const data = useGetProducts(1, 10);
-  
+  const data = useGetProducts(1, 8);
+
   return (
     <Box
       sx={{
