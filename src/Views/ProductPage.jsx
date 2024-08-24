@@ -27,6 +27,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { CartContext } from "../App";
 import handleAddToCart from "../utils/handleAddToCart";
 import Loading from "../Components/Loading";
+import "../styles/swiper-button.css";
 
 export default function ProductPage() {
   const { cart, setCart } = useContext(CartContext);
@@ -35,8 +36,8 @@ export default function ProductPage() {
   const toast = useToast();
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
 
-  const navigationNextRef = useRef(null);
-  const navigationPrevRef = useRef(null);
+  // const navigationNextRef = useRef(null);
+  // const navigationPrevRef = useRef(null);
 
   const translationDetailsKeys = (key) => {
     return (
@@ -70,10 +71,7 @@ export default function ProductPage() {
           <>
             <Swiper
               modules={[Pagination, Navigation]}
-              navigation={{
-                prevEl: navigationPrevRef.current,
-                nextEl: navigationNextRef.current,
-              }}
+              navigation
               pagination
               style={{
                 aspectRatio: "1/1",
@@ -88,6 +86,7 @@ export default function ProductPage() {
                 overflow: "hidden",
                 maxHeight: "500px",
               }}
+              loop
             >
               {productData.images.map(({ url, imgId }) => (
                 <SwiperSlide
@@ -107,7 +106,7 @@ export default function ProductPage() {
                   />
                 </SwiperSlide>
               ))}
-              <IconButton
+              {/* <IconButton
                 ref={navigationPrevRef}
                 aria-label="Next"
                 icon={<FaChevronRight />}
@@ -160,7 +159,7 @@ export default function ProductPage() {
                     },
                   },
                 }}
-              />
+              /> */}
             </Swiper>
             <Stack
               sx={{
