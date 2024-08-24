@@ -8,6 +8,7 @@ import RatesSection from "../Components/RatesSection";
 import containerStyles from "../utils/containerStyles";
 import "swiper/css";
 import "swiper/css/bundle";
+import "../styles/background.css";
 
 export default function Home() {
   const [isLargerThan1240] = useMediaQuery("(min-width: 1240px)");
@@ -15,9 +16,9 @@ export default function Home() {
   return (
     <>
       <Stack
+        className="custom-bg"
         direction="row"
         sx={{
-          bg: "blackAlpha.900",
           minH: "500px",
           alignItems: "center",
           justifyContent: { base: "center", lg: "space-between" },
@@ -41,7 +42,7 @@ export default function Home() {
             sx={{
               maxW: "600px",
               color: "white",
-              mb: { base: "35px", sm: "40px" },
+              mb: "40px",
               lineHeight: "1.4 !important",
             }}
           >

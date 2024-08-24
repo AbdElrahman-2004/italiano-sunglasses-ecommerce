@@ -4,10 +4,10 @@ import containerStyles from "../utils/containerStyles";
 export default function SectionTitle({ tilte }) {
   return (
     <Heading
+      className="custom-bg"
       as="h2"
       size="2xl"
       sx={{
-        bg: "black",
         py: 7,
         textAlign: {
           base: "center",
