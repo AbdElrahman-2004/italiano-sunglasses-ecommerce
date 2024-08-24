@@ -29,6 +29,10 @@ import { CartContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+const emailRegEx =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+const phoneRegEx = /^01[0-2,5]{1}[0-9]{8}$/;
+
 export default function Checkout() {
   const { cart } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -204,7 +208,7 @@ export default function Checkout() {
               {...register("phone", {
                 required: { value: true, message: "هذا الحقل مطلوب" },
                 pattern: {
-                  value: /^01[0-2,5]{1}[0-9]{8}$/,
+                  value: phoneRegEx,
                   message: "رقم الهاتف غير صحيح",
                 },
               })}
@@ -226,9 +230,14 @@ export default function Checkout() {
               _hover={{
                 bg: "gray.100",
               }}
+              formNoValidate
               border={errors.name && "2px solid red"}
               {...register("email", {
                 required: { value: true, message: "هذا الحقل مطلوب" },
+                pattern: {
+                  value: emailRegEx,
+                  message: "هذا الايميل غير صحيح",
+                },
               })}
             />
             {errors.email && (

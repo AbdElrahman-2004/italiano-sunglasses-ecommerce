@@ -21,7 +21,7 @@ const theme = extendTheme({
         boxShadow: "none !important",
       },
       "button:active:not(.css-avw398, .css-vl1ssf)": {
-        transform: "scale(0.93)",
+        transform: "scale(0.97)",
       },
       ".swiper-pagination-bullet-active": {
         background: "black",

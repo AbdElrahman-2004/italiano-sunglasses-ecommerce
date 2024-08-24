@@ -47,6 +47,7 @@ export default function Footer() {
                 }}
                 transitionDuration="0.3s"
                 cursor="pointer"
+                href="https://www.facebook.com/profile.php?id=100075752301887"
               >
                 <FaFacebook />
               </Link>

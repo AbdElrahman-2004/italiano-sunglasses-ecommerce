@@ -11,6 +11,7 @@ import {
   Image,
   Stack,
   Text,
+  useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
 import SectionTitle from "../Components/SectionTitle";
@@ -24,13 +25,14 @@ import decreaseQuantity from "../utils/decreaseQuantity";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { CartContext } from "../App";
-// @ts-ignore
-const API_IMAGES_URL = import.meta.env.VITE_API_IMAGES_URL;
+import { MdDelete } from "react-icons/md";
 
 export default function Cart() {
   const { cart, setCart } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
+
+  const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
   useEffect(() => {
     setTotalPrice(_.sumBy(cart, (item) => item.price * item.quantity));
@@ -69,6 +71,10 @@ export default function Cart() {
                       bg: "white",
                       boxShadow: "base",
                       cursor: "pointer",
+                      transitionDuration: "0.3s",
+                      _hover: {
+                        boxShadow: "md",
+                      },
                     }}
                     onClick={() => {
                       navigate(`/product/${productData._id}`);
@@ -77,20 +83,22 @@ export default function Cart() {
                     <Image
                       objectFit="cover"
                       maxW={{ base: "100%", sm: "200px" }}
-                      src={`${API_IMAGES_URL}/${productData.images[0]}`}
+                      src={productData.images[0].url}
                       alt={productData.title}
                     />
 
                     <Stack flex={1}>
-                      <CardBody p={"25px 30px 10px"}>
-                        <Heading as={"h3"} size="md">
+                      <CardBody
+                        p={{ base: "20px 30px 5px", sm: "25px 30px 5px" }}
+                      >
+                        <Heading as={"h3"} size="md" noOfLines={1} mb={"5px"}>
                           {productData.title}
                         </Heading>
 
-                        <Text py="2" noOfLines={1} lineHeight="2">
+                        <Text py="2" noOfLines={2} lineHeight="2">
                           {productData.description}
                         </Text>
-                        <Text py="2" fontSize="20px" fontWeight="bold">
+                        <Text pt="2" fontSize="25px" fontWeight="extrabold">
                           {productData.price} جنيه
                         </Text>
                       </CardBody>
@@ -103,16 +111,31 @@ export default function Cart() {
                             flex: "1",
                           }}
                         >
-                          <Button
-                            bg="black"
-                            colorScheme="white"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              deleteFromCart(cart, setCart, productData);
-                            }}
-                          >
-                            إزالة من العربة
-                          </Button>
+                          {isLargerThan700 ? (
+                            <Button
+                              aria-label="Delete product from cart"
+                              bg="#df2020"
+                              colorScheme="white"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteFromCart(cart, setCart, productData);
+                              }}
+                            >
+                              حذف من العربة
+                            </Button>
+                          ) : (
+                            <IconButton
+                              aria-label="Delete product from cart"
+                              bg="#df2020"
+                              colorScheme="white"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteFromCart(cart, setCart, productData);
+                              }}
+                              fontSize={"1.15em"}
+                              icon={<MdDelete />}
+                            />
+                          )}
                           <HStack>
                             <IconButton
                               aria-label="increase-quantity"
@@ -149,11 +172,11 @@ export default function Cart() {
           </Box>
           <Box
             sx={{
-              minW: "300px",
+              minW: { base: "100%", sm: "300px" },
               flex: 1,
               bg: "white",
               borderRadius: 10,
-              p: "25px 40px",
+              p: { base: "20px 30px", sm: "25px 40px" },
               boxShadow: "base",
             }}
           >

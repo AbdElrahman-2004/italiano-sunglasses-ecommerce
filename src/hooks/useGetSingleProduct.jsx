@@ -10,8 +10,8 @@ export default function useGetSingleProduct(productId) {
     description: "",
     details: {},
     price: null,
+    images: [],
   });
-  const [productImgs, setProductImgs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,12 +19,11 @@ export default function useGetSingleProduct(productId) {
       .get(`${API_URL}/${productId}`)
       .then((res) => {
         setProductData(res.data.data);
-        setProductImgs(res.data.data.images);
       })
       .catch((err) => {
         navigate("/notfound");
       });
   }, []);
 
-  return { productData, productImgs };
+  return productData;
 }

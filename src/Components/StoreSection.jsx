@@ -8,7 +8,7 @@ import Loading from "./Loading";
 export default function StoreSection() {
   const navigate = useNavigate();
   const data = useGetProducts(1, 10);
-
+  
   return (
     <Box
       sx={{

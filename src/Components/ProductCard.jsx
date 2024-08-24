@@ -14,14 +14,14 @@ import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import handleAddToCart from "../utils/handleAddToCart";
 import { CartContext } from "../App";
-// @ts-ignore
-const API_IMAGES_URL = import.meta.env.VITE_API_IMAGES_URL;
+
 
 export default function ProductCard({ productData }) {
   const { cart, setCart } = useContext(CartContext);
 
   const navigate = useNavigate();
   const toast = useToast();
+
 
   return (
     <Card
@@ -51,7 +51,7 @@ export default function ProductCard({ productData }) {
           }}
         >
           <Image
-            src={`${API_IMAGES_URL}/${productData.images[0]}`}
+            src={productData.images[0].url}
             sx={{
               m: "auto",
               h: "100%",
@@ -82,9 +82,9 @@ export default function ProductCard({ productData }) {
           bottom: "125px",
           left: "20px",
           bg: "#fefefe",
-          fontSize: { base: "30px", sm: "22px" },
-          h: { base: "60px", sm: "45px" },
-          w: { base: "60px", sm: "45px" },
+          fontSize: 21,
+          h: 45,
+          w: 45,
         }}
         _hover={{
           bg: "#000",

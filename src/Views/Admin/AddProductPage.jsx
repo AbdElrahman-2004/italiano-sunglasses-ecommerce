@@ -21,6 +21,7 @@ import { useState } from "react";
 import useUploadProduct from "../../hooks/useUploadProduct";
 import { useNavigate } from "react-router-dom";
 
+
 export default function AddProductPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

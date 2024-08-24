@@ -1,4 +1,5 @@
 import {
+  border,
   Box,
   Button,
   Flex,
@@ -12,10 +13,11 @@ import {
   Td,
   Text,
   Tr,
+  useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
 import useGetSingleProduct from "../hooks/useGetSingleProduct";
-import { useParams } from "react-router-dom";
+import { useMatch, useParams } from "react-router-dom";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -26,14 +28,13 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { CartContext } from "../App";
 import handleAddToCart from "../utils/handleAddToCart";
 import Loading from "../Components/Loading";
-// @ts-ignore
-const API_IMAGES_URL = import.meta.env.VITE_API_IMAGES_URL;
 
 export default function ProductPage() {
   const { cart, setCart } = useContext(CartContext);
   let { productId } = useParams();
-  const { productData, productImgs } = useGetSingleProduct(productId);
+  const productData = useGetSingleProduct(productId);
   const toast = useToast();
+  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
 
   const navigationNextRef = useRef(null);
   const navigationPrevRef = useRef(null);
@@ -57,8 +58,9 @@ export default function ProductPage() {
     <>
       <Flex
         sx={{
-          py: 10,
-          gap: "40px 30px",
+          pt: { base: 5, lg: 10 },
+          pb: { base: 8, lg: 10 },
+          gap: "40px",
           flexWrap: "wrap",
           bg: "blackAlpha.50",
           justifyContent: "center",
@@ -80,17 +82,18 @@ export default function ProductPage() {
                 transitionTimingFunction: "ease-in-out",
                 height: "100%",
                 position: "relative",
-                width: "fit-content",
+                width: isLargerThan1150 ? "fit-content" : "100%",
                 border: "1px solid",
                 borderColor: "#CBD5E0",
                 borderRadius: 8,
                 overflow: "hidden",
                 maxHeight: "500px",
               }}
+              loop
             >
-              {productImgs.map((img) => (
+              {productData.images.map(({ url, imgId }) => (
                 <SwiperSlide
-                  key={img}
+                  key={imgId}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -100,8 +103,9 @@ export default function ProductPage() {
                   <Image
                     w="100%"
                     maxH="500px"
-                    src={`${API_IMAGES_URL}/${img}`}
-                    alt=""
+                    objectFit={"scale-down"}
+                    src={url}
+                    alt={productData.title}
                   />
                 </SwiperSlide>
               ))}
@@ -162,11 +166,11 @@ export default function ProductPage() {
             </Swiper>
             <Stack
               sx={{
-                minW: "400px",
+                minW: isLargerThan1150 ? "400px" : "100%",
                 maxW: "600px",
                 flex: 1,
                 mx: { base: "auto", lg: "initial" },
-                px: "25px",
+                // px: "25px",
               }}
             >
               <Heading as={"h3"}>{productData.title}</Heading>

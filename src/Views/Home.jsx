@@ -8,11 +8,8 @@ import RatesSection from "../Components/RatesSection";
 import containerStyles from "../utils/containerStyles";
 import "swiper/css";
 import "swiper/css/bundle";
-import { useContext } from "react";
-import { CartContext } from "../App";
 
 export default function Home() {
-  const { cart, setCart } = useContext(CartContext);
   const [isLargerThan1240] = useMediaQuery("(min-width: 1240px)");
 
   return (
@@ -25,7 +22,7 @@ export default function Home() {
           alignItems: "center",
           justifyContent: { base: "center", lg: "space-between" },
           flexWrap: "wrap",
-          py: "110px",
+          py: { base: "100px", sm: "110px" },
           ...containerStyles,
         }}
       >
@@ -39,17 +36,18 @@ export default function Home() {
         >
           <Heading
             as="h1"
-            size="4xl"
+            fontSize={{ base: "2.8em" }}
+            size={{ sm: "4xl" }}
             sx={{
               maxW: "600px",
               color: "white",
-              mb: "40px",
-              lineHeight: "1.4",
+              mb: { base: "35px", sm: "40px" },
+              lineHeight: "1.4 !important",
             }}
           >
             تألّق بأناقة وإطلالة مميزة
           </Heading>
-          <Text fontSize="2xl" lineHeight="2">
+          <Text fontSize={{ base: "1.15em", sm: "2xl" }} lineHeight="2">
             &quot; اكتشف مجموعتنا الواسعة من النظارات الشمسية التي تجمع بين
             الأناقة والحماية لتجد زوج النظارات المثالي لك &quot;
           </Text>

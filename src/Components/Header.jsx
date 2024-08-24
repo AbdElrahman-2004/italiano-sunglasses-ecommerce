@@ -38,7 +38,7 @@ export default function Header() {
       boxShadow="base"
     >
       <Link to="/">
-        <Image src="/Images/Logo2.png" alt="Logo" sx={{ h: "68px" }} />
+        <Image src="/Images/Logo.png" alt="Logo" sx={{ h: "68px" }} />
       </Link>
       <Spacer />
 

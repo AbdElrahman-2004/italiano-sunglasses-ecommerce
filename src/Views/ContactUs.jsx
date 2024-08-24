@@ -14,6 +14,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSubmit } from "@formspree/react";
 
+const emailRegEx =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+const phoneRegEx = /^01[0-2,5]{1}[0-9]{8}$/;
+
 export default function ContactUs() {
   const toast = useToast();
   const navigate = useNavigate();
@@ -88,12 +92,13 @@ export default function ContactUs() {
           type="text"
           variant={"filled"}
           size="lg"
+          border={errors.name && "2px solid red"}
           {...register("name", {
             required: { value: true, message: "هذا الحقل مطلوب" },
           })}
         />
         {errors.name && (
-          <Text color={"red"} mt={"-10px"}>
+          <Text color={"red"} mt={"-15px"} mb={"-5px"}>
             {errors.name.message}
           </Text>
         )}
@@ -104,16 +109,17 @@ export default function ContactUs() {
           type="tel"
           variant={"filled"}
           size="lg"
+          border={errors.name && "2px solid red"}
           {...register("phone", {
             required: { value: true, message: "هذا الحقل مطلوب" },
             pattern: {
-              value: /^01[0-2,5]{1}[0-9]{8}$/,
+              value: phoneRegEx,
               message: "رقم الهاتف غير صحيح",
             },
           })}
         />
         {errors.phone && (
-          <Text color={"red"} mt={"-10px"}>
+          <Text color={"red"} mt={"-15px"} mb={"-5px"}>
             {errors.phone.message}
           </Text>
         )}
@@ -125,13 +131,19 @@ export default function ContactUs() {
           type="email"
           variant={"filled"}
           size="lg"
+          border={errors.name && "2px solid red"}
+          formNoValidate
           {...register("email", {
             required: { value: true, message: "هذا الحقل مطلوب" },
+            pattern: {
+              value: emailRegEx,
+              message: "هذا الايميل غير صحيح",
+            },
           })}
         />
 
         {errors.email && (
-          <Text color={"red"} mt={"-10px"}>
+          <Text color={"red"} mt={"-15px"} mb={"-5px"}>
             {errors.email.message}
           </Text>
         )}
@@ -142,14 +154,16 @@ export default function ContactUs() {
           name="الرسالة"
           variant={"filled"}
           size="lg"
+          border={errors.name && "2px solid red"}
           {...register("message", {
             required: { value: true, message: "هذا الحقل مطلوب" },
             minLength: { value: 20, message: "يرجى كتابة 20 حرف على الأقل" },
           })}
+          h={"140px"}
         />
 
         {errors.message && (
-          <Text color={"red"} mt={"-10px"}>
+          <Text color={"red"} mt={"-15px"} mb={"-5px"}>
             {errors.message.message}
           </Text>
         )}
@@ -161,6 +175,7 @@ export default function ContactUs() {
           mt={"5px"}
           type="submit"
           size="lg"
+          border={errors.name && "2px solid red"}
           isDisabled={isSubmitting}
         >
           إرسال
