@@ -170,7 +170,6 @@ export default function ProductPage() {
                 maxW: "600px",
                 flex: 1,
                 mx: { base: "auto", lg: "initial" },
-                // px: "25px",
               }}
             >
               <Heading as={"h3"}>{productData.title}</Heading>

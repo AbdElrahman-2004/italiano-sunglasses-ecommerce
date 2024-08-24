@@ -2,16 +2,18 @@ import axios from "axios";
 import httpStatus from "../utils/httpStatus";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 // @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL;
 export default function useUploadProduct() {
   const navigate = useNavigate();
   const toast = useToast();
+  const [isUploading, setIsUploading] = useState(false);
 
   const token = sessionStorage.getItem("token");
-
-  return (data) => {
-    axios
+  const uploadProduct = async (data) => {
+    setIsUploading(true);
+    await axios
       .post(API_URL, data, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -30,5 +32,7 @@ export default function useUploadProduct() {
         }
       })
       .catch((err) => console.log(err.response.data));
+    setIsUploading(false);
   };
+  return { uploadProduct, isUploading };
 }

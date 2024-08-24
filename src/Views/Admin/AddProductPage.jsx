@@ -21,14 +21,13 @@ import { useState } from "react";
 import useUploadProduct from "../../hooks/useUploadProduct";
 import { useNavigate } from "react-router-dom";
 
-
 export default function AddProductPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [details, setDetails] = useState({});
   const [price, setPrice] = useState();
   const [files, setFiles] = useState([]);
-  const uploadProduct = useUploadProduct();
+  const { uploadProduct, isUploading } = useUploadProduct();
   const navigate = useNavigate();
 
   if (!sessionStorage.token) {
@@ -37,7 +36,6 @@ export default function AddProductPage() {
 
   const handleUploadClick = (e) => {
     e.preventDefault();
-
     if (files) {
       const data = new FormData();
       [...files].forEach((file) => {
@@ -188,6 +186,7 @@ export default function AddProductPage() {
           colorScheme="white"
           bg="black"
           color="white"
+          isDisabled={isUploading}
         >
           إضــافــة
         </Button>

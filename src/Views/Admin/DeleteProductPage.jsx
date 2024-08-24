@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function DeleteProductPage() {
   const [url, setUrl] = useState("");
-  const deleteProduct = useDeleteProduct();
+  const { deleteProduct, isDeleting } = useDeleteProduct();
   const navigate = useNavigate();
 
   if (!sessionStorage.token) {
@@ -31,7 +31,7 @@ export default function DeleteProductPage() {
             placeholder="أضف رابط المنتج"
             sx={{ direction: "ltr" }}
             onChange={(e) => {
-              setUrl(e.target.value)
+              setUrl(e.target.value);
             }}
           />
           <InputRightAddon sx={{ direction: "ltr" }}>.com</InputRightAddon>
@@ -46,6 +46,7 @@ export default function DeleteProductPage() {
           onClick={() => {
             deleteProduct(url);
           }}
+          isDisabled={isDeleting}
         >
           تـأكـيـد
         </Button>
