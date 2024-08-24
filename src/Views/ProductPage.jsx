@@ -1,5 +1,4 @@
 import {
-  border,
   Box,
   Button,
   Flex,
@@ -17,7 +16,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import useGetSingleProduct from "../hooks/useGetSingleProduct";
-import { useMatch, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -89,7 +88,6 @@ export default function ProductPage() {
                 overflow: "hidden",
                 maxHeight: "500px",
               }}
-              loop
             >
               {productData.images.map(({ url, imgId }) => (
                 <SwiperSlide
