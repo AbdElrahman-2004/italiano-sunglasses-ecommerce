@@ -9,7 +9,7 @@ import {
   Image,
   Divider,
 } from "@chakra-ui/react";
-import { FaFacebook, FaInstagram, FaTelegram, FaTiktok } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
 import { LuMessagesSquare } from "react-icons/lu";
 import containerStyles from "../utils/containerStyles";
 import { useNavigate } from "react-router-dom";

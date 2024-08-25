@@ -22,7 +22,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import containerStyles from "../utils/containerStyles";
-import { useSubmit, ValidationError } from "@formspree/react";
+import { useSubmit } from "@formspree/react";
 import _ from "lodash";
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../App";

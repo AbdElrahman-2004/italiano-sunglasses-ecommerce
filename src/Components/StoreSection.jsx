@@ -1,4 +1,4 @@
-import { Box, Button, Grid, GridItem, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import { useNavigate } from "react-router-dom";
 import SectionTitle from "./SectionTitle";
