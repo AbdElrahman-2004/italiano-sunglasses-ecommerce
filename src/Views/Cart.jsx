@@ -81,10 +81,11 @@ export default function Cart() {
                     }}
                   >
                     <Image
-                      objectFit="cover"
+                      objectFit="scale-down"
                       maxW={{ base: "100%", sm: "200px" }}
                       src={productData.images[0].url}
                       alt={productData.title}
+                      bg={"blackAlpha.50"}
                     />
 
                     <Stack flex={1}>
